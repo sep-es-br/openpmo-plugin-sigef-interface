@@ -44,22 +44,22 @@ public interface ISigefProvider {
     
     /**
      * 
-     * Busca a lista de Fonte de Recursos em um JsonNode
+     * Busca a lista de Fontes de Recursos em um JsonNode
      * 
-     * @return JsonNode contendo a fonte de recursos
-     * @deprecated Este método é destinado para uso em integrações futuras na aplicação. ainda não é utilizado dentro do OpenPMO
+     * @return JsonNode contendo as fontes de recursos
      */
-    @Deprecated(forRemoval = false)
-    public default JsonNode getResourceSourceList(){
-        throw new UnsupportedOperationException("O método getResourceSourceList ainda não é suportado na versão atual.");
-    }
+    public JsonNode getResourceSourceList();
     
     /**
-     * retorna a lista de Centro de Recursos em um JsonNode
+     * Retorna a lista de Centros de Custo em um JsonNode
      * 
-     * @return JsonNode contendo os Centros de Recurso
+     * @return JsonNode contendo os centros de custo
+     * @deprecated Este método é destinado a integrações futuras e ainda não é utilizado pelo OpenPMO
      */
-    public JsonNode getCostCenterList();
+    @Deprecated(forRemoval = false)
+    public default JsonNode getCostCenterList() {
+        throw new UnsupportedOperationException("O método getCostCenterList ainda não é suportado na versão atual.");
+    }
     
     
 }

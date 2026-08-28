@@ -67,14 +67,14 @@ public interface ISigefProvider {
         String codBU
     ) throws Exception;
 
+    JsonNode getResourceSourceList();
+
     @Deprecated(forRemoval = false)
-    default JsonNode getResourceSourceList() {
+    default JsonNode getCostCenterList() {
         throw new UnsupportedOperationException(
-            "O método getResourceSourceList ainda não é suportado na versão atual."
+            "O método getCostCenterList ainda não é suportado na versão atual."
         );
     }
-
-    JsonNode getCostCenterList();
 }
 ```
 
@@ -84,8 +84,8 @@ public interface ISigefProvider {
 | `getBudgetPlanList(String codBU)` | Consulta os planos orçamentários de uma unidade orçamentária. |
 | `getInstrumentsList(String codBU, long startYear, long endYear)` | Consulta contratos e acordos de uma unidade orçamentária, filtrados pelo período informado. |
 | `getLiquidatedValueByBudgetPlan(String codBP, String codBU)` | Consulta o valor liquidado de um plano orçamentário em uma unidade orçamentária. |
-| `getResourceSourceList()` | Ponto de extensão futuro para consultar fontes de recursos. A implementação padrão não oferece suporte à operação. |
-| `getCostCenterList()` | Consulta a lista de centros de custo. |
+| `getResourceSourceList()` | Consulta a lista de fontes de recursos. |
+| `getCostCenterList()` | Ponto de extensão futuro para consultar centros de custo. A implementação padrão não oferece suporte à operação. |
 
 ### Parâmetros
 
@@ -102,7 +102,7 @@ Todos os métodos retornam `JsonNode`. O contrato não determina a estrutura int
 
 Os métodos que declaram `throws Exception` permitem que a implementação sinalize falhas ocorridas durante a consulta. O plugin concreto deve adotar o tratamento de erros apropriado à integração.
 
-`getResourceSourceList()` é um método de extensão para integração futura. Como sua implementação padrão lança `UnsupportedOperationException`, o consumidor não deve presumir que essa consulta está disponível sem verificar o suporte oferecido pelo plugin concreto.
+`getCostCenterList()` é um método de extensão para integração futura. Como sua implementação padrão lança `UnsupportedOperationException`, o consumidor não deve presumir que essa consulta está disponível sem verificar o suporte oferecido pelo plugin concreto.
 
 ## Criando uma implementação
 
@@ -140,7 +140,7 @@ public class SigefProvider implements ISigefProvider {
     }
 
     @Override
-    public JsonNode getCostCenterList() {
+    public JsonNode getResourceSourceList() {
         throw new UnsupportedOperationException("Implementar consulta");
     }
 }
